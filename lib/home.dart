@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gradient3/input_text.dart';
 
 import 'colorpicker.dart';
 import 'package:intl/intl.dart' show DateFormat;
@@ -133,7 +134,11 @@ class _homeAppState extends State<homeApp> {
                       color: Color(0xff606060),
                     ),
                     onPressed: () {
-                      addGradient(FlutterGradients.seaStrike());
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => textApp()),
+                      );
+                      // addGradient(FlutterGradients.seaStrike());
                     }),
                 IconButton(
                     icon: Icon(
