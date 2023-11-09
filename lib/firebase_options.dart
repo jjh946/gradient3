@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,19 +49,9 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDduP111aepVEdXKZP8Muu8xEfNVBSnvng',
-    appId: '1:950200397496:web:7312991822c79f4ca20e4d',
-    messagingSenderId: '950200397496',
-    projectId: 'capstone-403203',
-    authDomain: 'capstone-403203.firebaseapp.com',
-    storageBucket: 'capstone-403203.appspot.com',
-    measurementId: 'G-X6C4TRL5RY',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCehnjAE6feqnJi8uuAZb6Sl5wuOjakAPY',
-    appId: '1:950200397496:android:24e004e0f50b0cbda20e4d',
+    appId: '1:950200397496:android:5ade1074d0687d4ca20e4d',
     messagingSenderId: '950200397496',
     projectId: 'capstone-403203',
     storageBucket: 'capstone-403203.appspot.com',
@@ -70,16 +66,5 @@ class DefaultFirebaseOptions {
     androidClientId: '950200397496-fmlkdt3trse7tr418v0a9advt3fsag2o.apps.googleusercontent.com',
     iosClientId: '950200397496-su9lvmd6j0usdq8g8jgbsum77krm1e67.apps.googleusercontent.com',
     iosBundleId: 'com.example.gradient3',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAhNNrObvTlpZ3chIAWxf-JtjggnvmnUC8',
-    appId: '1:950200397496:ios:bb6c60bb79b5e2eda20e4d',
-    messagingSenderId: '950200397496',
-    projectId: 'capstone-403203',
-    storageBucket: 'capstone-403203.appspot.com',
-    androidClientId: '950200397496-fmlkdt3trse7tr418v0a9advt3fsag2o.apps.googleusercontent.com',
-    iosClientId: '950200397496-vdngof3gv5n20qu1155480kviilbmcig.apps.googleusercontent.com',
-    iosBundleId: 'com.example.gradient3.RunnerTests',
   );
 }
