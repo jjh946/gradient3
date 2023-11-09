@@ -17,6 +17,7 @@ class textApp extends StatefulWidget {
 }
 
 class _textAppState extends State<textApp> {
+
   final _contentEditController = TextEditingController();
   final Gradient _gradient = LinearGradient(
     begin: Alignment.topLeft,
