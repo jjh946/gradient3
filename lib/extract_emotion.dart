@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-const apiKey = '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';
+const apiKey = 'key';
 const apiUrl = 'https://api.openai.com/v1/chat/completions';
 const prompt_prefix = '''
 [분노, 공포, 기대, 놀람, 기쁨, 슬픔, 신뢰, 혐오, 평안, 승인, 불안, 신경쓰임, 황홀, 존경, 극심한 공포, 깜짝 놀람, 비탄, 증오, 경계, 격노, 수심, 지루함, 짜증, 관심], 이 감정들이 너가 찾아야 할 감정이야.
