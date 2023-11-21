@@ -3,11 +3,14 @@ import 'package:circular_menu/circular_menu.dart';
 import 'home.dart';
 
 void main() {
-  runApp(MaterialApp(home: addApp())
+  runApp(MaterialApp(home: addApp(data: '',))
   );
 }
 
 class addApp extends StatefulWidget {
+  final String data;
+  addApp({Key? key, required this.data}) : super(key: key);
+
   @override
   _addAppState createState() => _addAppState();
 }
@@ -15,7 +18,8 @@ class addApp extends StatefulWidget {
 class _addAppState extends State<addApp> {
   String _colorName = 'No';
   Color _color = Colors.black;
-  Gradient _gradient = LinearGradient(
+
+  final Gradient _gradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [
@@ -28,6 +32,7 @@ class _addAppState extends State<addApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.data);
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -55,7 +60,7 @@ class _addAppState extends State<addApp> {
           actions: [TextButton(onPressed: (){
             Navigator.pop(
                 context,
-                _gradient
+                [_gradient, widget.data]
             );
           },
               child: Text('완료',style: TextStyle(color: Color(0xff606060),))

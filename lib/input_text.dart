@@ -28,6 +28,8 @@ class _textAppState extends State<textApp> {
     FlutterGradients.magicLake(),
     FlutterGradients.flyingLemon(),
   ];
+
+
   var now = DateTime.now();
   var year = DateFormat('yyy').format(DateTime.now());
   var month = DateFormat('MMM').format(DateTime.now());
@@ -35,6 +37,7 @@ class _textAppState extends State<textApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(day);
     return Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(

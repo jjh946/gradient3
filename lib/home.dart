@@ -10,7 +10,6 @@ void main() {
 }
 
 
-
 class homeApp extends StatefulWidget {
   @override
   _homeAppState createState() => _homeAppState();
@@ -18,8 +17,34 @@ class homeApp extends StatefulWidget {
 
 class _homeAppState extends State<homeApp> {
 
-  String _currentMonth = DateFormat.yMMM().format(DateTime(2023, 12, 14));
-  DateTime _targetDateTime = DateTime(2023, 12, 14);
+  var now = DateTime.now();
+  var year = DateFormat('yyy').format(DateTime.now());
+  var month = DateFormat('MMM').format(DateTime.now());
+
+  int getDaysInMonth(year, month) {  // 월별 일수 계산
+    int yearNum;
+    int monthNum;
+    yearNum = int.parse(year);
+    switch(month) {
+      case 'Jan': monthNum = 1; break;
+      case 'Feb': monthNum = 2; break;
+      case 'Mar': monthNum = 3; break;
+      case 'Apr': monthNum = 4; break;
+      case 'May': monthNum = 5; break;
+      case 'Jun': monthNum = 6; break;
+      case 'Jul': monthNum = 7; break;
+      case 'Aug': monthNum = 8; break;
+      case 'Sep': monthNum = 9; break;
+      case 'Oct': monthNum = 10; break;
+      case 'Nov': monthNum = 11; break;
+      case 'Dec': monthNum = 12; break;
+      default: monthNum = 1; break;
+    }
+    return DateTime(yearNum, monthNum + 1, 0).day;
+  }
+
+  //String _currentMonth = DateFormat.yMMM().format(DateTime(2023, 12, 14));
+  //DateTime _targetDateTime = DateTime(2023, 12, 14);
 
   List gradientList = [
     FlutterGradients.magicLake(),
@@ -38,16 +63,14 @@ class _homeAppState extends State<homeApp> {
       begin: Alignment.topRight,
       end: Alignment.bottomLeft,
       colors: [
-        Colors.blue,
-        Colors.green,
-        Colors.white,
+        Colors.white.withOpacity(0.0), // empty bead
       ],
     ),
   ];
 
-  addGradient(a) {
+  addGradient(a, i) {
     setState(() {
-      gradientList.add(a);
+      gradientList[i] = a;
     });
   }
   deleteGradient() {
@@ -78,9 +101,12 @@ class _homeAppState extends State<homeApp> {
                 builder: (context) {
                   return FloatingActionButton(
                     onPressed: (){
-                      _navigateAndDisplaySelection(context);
+                      //_navigateAndDisplaySelection(context);
                     },
                     elevation: 0,
+                    backgroundColor: Colors.white,
+                    foregroundColor: Color(0xff606060),
+                    hoverColor: Colors.redAccent,
                     child: Container(
                       height: 70,
                       width: 70,
@@ -97,11 +123,7 @@ class _homeAppState extends State<homeApp> {
                         ],
                       ),
                       child: Icon(Icons.add, size: 40,),
-
                     ),
-                    backgroundColor: Colors.white,
-                    foregroundColor: Color(0xff606060),
-                    hoverColor: Colors.redAccent,
                   );
                 }
             ),
@@ -133,7 +155,7 @@ class _homeAppState extends State<homeApp> {
                       color: Color(0xff606060),
                     ),
                     onPressed: () {
-                      addGradient(FlutterGradients.seaStrike());
+                      //addGradient(FlutterGradients.seaStrike());
                     }),
                 IconButton(
                     icon: Icon(
@@ -163,7 +185,7 @@ class _homeAppState extends State<homeApp> {
         )
     );
   }
-
+/*
   Future<void> _navigateAndDisplaySelection(BuildContext context) async {
     // Navigator.push returns a Future that completes after calling
     // Navigator.pop on the Selection Screen.
@@ -172,7 +194,8 @@ class _homeAppState extends State<homeApp> {
       context,
       MaterialPageRoute(builder: (context) => addApp()),
     ).then((value){
-      if (value!=null){addGradient(value);}
+      if (value!=null){
+        addGradient(value);}
     }
     );
 
@@ -184,7 +207,7 @@ class _homeAppState extends State<homeApp> {
     // and show the new result.
 
   }
-
+*/
   Widget shitcalendar() {
     return Container(
       margin: EdgeInsets.only(
@@ -193,34 +216,48 @@ class _homeAppState extends State<homeApp> {
         left: 16.0,
         right: 16.0,
       ),
-      child: new Row(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           IconButton(
               onPressed: () {
                 setState(() {
-                  _targetDateTime =
-                      DateTime(_targetDateTime.year, _targetDateTime.month - 1);
-                  _currentMonth = DateFormat.yMMM().format(_targetDateTime);
+                  int subtractMonths = 1;
+                  now = DateTime(now.year, now.month - subtractMonths, now.day);
+                  year = DateFormat('yyy').format(now);
+                  month = DateFormat('MMM').format(now);
                 });
               },
               icon: const Icon(Icons.arrow_back_ios)),
           Expanded(
-              child: Center(
-                child: Text(
-                  _currentMonth,
-                  style: TextStyle(
-                    fontFamily: 'Julius',
-                    fontSize: 40.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    year,
+                    style: TextStyle(
+                      fontFamily: 'Julius',
+                      fontSize: 40.0,
+                    ),
                   ),
-                ),
-              )),
+                  SizedBox(width: 20.0),
+                  Text(
+                    month.toUpperCase(),
+                    style: TextStyle(
+                      fontFamily: 'Julius',
+                      fontSize: 40.0,
+                    ),
+                  ),
+                ],
+              )
+          ),
           IconButton(
               onPressed: () {
                 setState(() {
-                  _targetDateTime =
-                      DateTime(_targetDateTime.year, _targetDateTime.month + 1);
-                  _currentMonth = DateFormat.yMMM().format(_targetDateTime);
+                  int addMonths = 1;
+                  now = DateTime(now.year, now.month + addMonths, now.day);
+                  year = DateFormat('yyy').format(now);
+                  month = DateFormat('MMM').format(now);
                 });
               },
               icon: const Icon(Icons.arrow_forward_ios)),
@@ -239,26 +276,81 @@ class _homeAppState extends State<homeApp> {
         crossAxisSpacing: 8.0,
         mainAxisSpacing: 16.0,
         childAspectRatio: 1.2,
-        children: List.generate(gradientList.length, (index) {
-          return Expanded(
-            child: Container(
-              width: 50,
-              height: 150,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: gradientList[index],
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.4),
-                    spreadRadius: 2.0,
-                    blurRadius: 7.0,
-                    offset: Offset(2, 2), // changes position of shadow
+        children: List.generate(getDaysInMonth(year, month), (index) {
+          return GestureDetector(
+
+            onTap: (){
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('$month / ${index+1} ex)기쁨 뿌듯'),
+                      content: Text('구슬 정보를 수정하거나 삭제합니다.\n삭제시 빈 구슬로 저장됩니다!'),
+                      actions: [
+                        TextButton(
+                          child: Text('수정'),
+                          onPressed: () async {
+                            Navigator.of(context).pop();
+                            final result = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => addApp(data: '${index+1}'),
+                              ),
+                            );
+                            print('Received data: ${result[0]}, ${result[1]}');
+                            if (result!=null){
+                              addGradient(result[0], int.parse(result[1])-1);
+                            }
+                          },
+                        ),
+                        TextButton(
+                          child: Text('삭제'),
+                          onPressed: () {
+                            setState(() {
+                              gradientList[index] = LinearGradient(
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft,
+                                colors: [
+                                  Colors.white.withOpacity(0.0), // empty bead
+                                ],
+                              );
+                            });
+                            Navigator.of(context).pop();
+                            },
+                        ),
+                      ],
+                    );},
+              );},
+              child: Expanded(
+                child: Container(
+                  width: 50,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient:
+                        index >= gradientList.length ?
+                            LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              colors: [
+                                Colors.white.withOpacity(0.0), // empty bead
+                              ],
+                            )
+                            : gradientList[index],
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.4),
+                        spreadRadius: 2.0,
+                        blurRadius: 7.0,
+                        offset: Offset(2, 2), // changes position of shadow
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              )
           );
-        }));
+        }),
+    );
   }
 }
 
