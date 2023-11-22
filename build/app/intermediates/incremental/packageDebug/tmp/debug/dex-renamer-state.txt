@@ -1,0 +1,4 @@
+#Wed Nov 22 23:00:30 KST 2023
+base.0=C\:\\gradient3\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
