@@ -5,7 +5,6 @@ import 'package:flutter_gradients_reborn/flutter_gradients_reborn.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
-import 'circular_menu.dart';
 
 void main() {
   runApp(MaterialApp(home: textApp())
@@ -22,15 +21,18 @@ class textApp extends StatefulWidget {
 class _textAppState extends State<textApp> {
   final _contentEditController = TextEditingController();
   String _emotionResponse = ""; // API 응답을 저장할 변수
-  List _emotionResponseList = [];
+  List _emotionResponseList = [
+    Color(0xffE8F8C8),
+    Color(0xffECACB8),
+  ];
 
 
   final Gradient _gradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [
-      // Color(0xffE8F8C8),
-      // Color(0xffECACB8),
+      Color(0xffE8F8C8),
+      Color(0xffECACB8),
     ],
   );
   var basefeelings = {
@@ -42,10 +44,8 @@ class _textAppState extends State<textApp> {
     '기대' : Color(0xfd84ffff)
   };
   List feelings = [
-    // FlutterGradients.magicLake(),
-    // FlutterGradients.flyingLemon(),
-
-
+    FlutterGradients.magicLake(),
+    FlutterGradients.flyingLemon(),
 
   ];
   var now = DateTime.now();
@@ -167,7 +167,7 @@ class _textAppState extends State<textApp> {
                           extractEmotion(prompt).then((value) {
                             setState(() {
                               _emotionResponse = value; // 상태 갱신
-                              _emotionResponseList = value.split(',').map((e) => e.trim()).toList();
+                              //_emotionResponseList = value.split(',').map((e) => e.trim()).toList();
 
 
                             });
