@@ -143,7 +143,7 @@ class _socialShareState extends State<socialShare> {
                             backgroundTopColor: "#ffffff",
                             backgroundBottomColor: "#000000",
                             backgroundResourcePath: imageBackgroundPath,
-                            attributionURL: "url" //firebase 를 통해 유저의 attributionurl 받아옴,
+                            attributionURL: "instagram://app"
                           ).then((data) {
                             print(data);
                           });
