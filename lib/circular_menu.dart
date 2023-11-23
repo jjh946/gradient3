@@ -99,6 +99,17 @@ class _addAppState extends State<addApp> {
                     _gradient.colors.add(_color);
                   });
                 }),
+
+            // CircularMenuItem(
+            //
+            //     color: Colors.white,
+            //     onTap: () {
+            //       setState(() {
+            //         _color = Color(0xffECACB8);
+            //         _colorName = '기쁨';
+            //         _gradient.colors.add(_color);
+            //       });
+            //     }),
             CircularMenuItem(
 
                 color: Color(0xffCBD2FD),

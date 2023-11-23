@@ -1,4 +1,4 @@
-#Thu Nov 09 19:30:20 KST 2023
+#Wed Nov 15 17:51:21 KST 2023
 base.0=/Users/junhyeong/Documents/GitHub/gradient3/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

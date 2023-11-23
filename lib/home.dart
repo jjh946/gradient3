@@ -134,10 +134,7 @@ class _homeAppState extends State<homeApp> {
                       color: Color(0xff606060),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => textApp()),
-                      );
+                      _navigateAndDisplaySelection2(context);
                       // addGradient(FlutterGradients.seaStrike());
                     }),
                 IconButton(
@@ -176,6 +173,27 @@ class _homeAppState extends State<homeApp> {
     final result = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => addApp()),
+    ).then((value){
+      if (value!=null){addGradient(value);}
+    }
+    );
+
+    // When a BuildContext is used from a StatefulWidget, the mounted property
+    // must be checked after an asynchronous gap.
+    if (!mounted) return;
+
+    // After the Selection Screen returns a result, hide any previous snackbars
+    // and show the new result.
+
+  }
+
+  Future<void> _navigateAndDisplaySelection2(BuildContext context) async {
+    // Navigator.push returns a Future that completes after calling
+    // Navigator.pop on the Selection Screen.
+
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => textApp()),
     ).then((value){
       if (value!=null){addGradient(value);}
     }

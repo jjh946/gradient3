@@ -1,9 +1,7 @@
 import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-const apiKey = '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';
+const apiKey = '';
 const apiUrl = 'https://api.openai.com/v1/chat/completions';
 const prompt_prefix = '''
 [분노, 공포, 기대, 놀람, 기쁨, 슬픔, 신뢰, 혐오, 평안, 승인, 불안, 신경쓰임, 황홀, 존경, 극심한 공포, 깜짝 놀람, 비탄, 증오, 경계, 격노, 수심, 지루함, 짜증, 관심], 이 감정들이 너가 찾아야 할 감정이야.
@@ -41,7 +39,7 @@ Future<String> extractEmotion(String prompt) async{
 
 void main(){
   // runApp(const MyApp());
-  String prompt = '''Q. 밥을 먹었는데 너무 맛있었다. 팀플을 하는데 생각보다 재밌다. 일요일에 친구를 만나기로 했다. 옷을 무엇을 입어야 할지 고민이다.
+  String prompt = '''Q. 오늘 코딩을 했다. 착잡했다. 피고해서 그만하고 싶다. 집에 가고싶다
 A: ''';
   Future<String> data = extractEmotion(prompt);
   data.then((value) {
