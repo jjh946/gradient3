@@ -19,7 +19,7 @@ const prompt_prefix = '''
 Q: 오늘 아침에 일찍 일어났지만 교통체증 때문에 지각을 해서 아침부터 망쳐버렸어. 오늘 비가오는데 우산도 가져오지 않아서 비에 흠뻑 젖어서 울적해. 그래도 내일이 주말이라 다행이다
 A: 짜증, 슬픔, 기대
 
-Q. 오늘 아침에 나와 사이가 좋지않던 친구에게 회사에 최종 면접을 통과해서 너무 기쁘다는 문자를 받았어. 그는 나를 무시하고 놀렸기 때문에 조금 슬펐어. 내일은 그래도 다른 면접이 있으니 힘내자
+Q: 오늘 아침에 나와 사이가 좋지않던 친구에게 회사에 최종 면접을 통과해서 너무 기쁘다는 문자를 받았어. 그는 나를 무시하고 놀렸기 때문에 조금 슬펐어. 내일은 그래도 다른 면접이 있으니 힘내자
 A: 혐오, 슬픔, 기대
 (일기를 쓴 사람은 기쁨을 느끼지 않았음)''';
 
@@ -72,14 +72,17 @@ void main() async {
   String formatted_date = "${now.year}${_twoDigits(now.month)}${_twoDigits(now.day)}${_twoDigits(now.hour)}${_twoDigits(now.minute)}${_twoDigits(now.second)}";
 
 
-  String prompt = '''Q. 오늘 코딩을 했다. 착잡했다. 피곤해서 그만하고 싶다. 집에 가고싶다
+  String prompt = '''Q: 오늘 코딩을 했다. 착잡했다. 피곤해서 그만하고 싶다. 집에 가고싶다
 A: ''';
+  // get only diary content not Q: and A:
+
   extractEmotion(prompt).then((value) async {
     print(value);
     await firestore.collection('user').doc(user_id).collection('diary').doc(formatted_date).set(
         {
           "createdTimestamp": Timestamp.fromDate(now),
           "modifiedTimestamp": Timestamp.fromDate(now),
+          "content": prompt.split('Q: ')[1].split('\nA:')[0];
           "emotion": {
             "extractor": "GPT4",
             "extractedEmotions": value.split(',').map((e) => e.trim()).toList()
