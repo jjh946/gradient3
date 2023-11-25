@@ -247,7 +247,7 @@ class _textAppState extends State<textApp> {
 }
 
 
-const apiKey = '';
+const apiKey = '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';
 const apiUrl = 'https://api.openai.com/v1/chat/completions';
 const prompt_prefix = '''
 [뿌듯, 슬픔, 기쁨, 피곤, 아쉬움, 기대], 이 감정들이 너가 찾아야 할 감정이야.
