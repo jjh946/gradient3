@@ -19,6 +19,7 @@ class textApp extends StatefulWidget {
 }
 
 class _textAppState extends State<textApp> {
+
   final _contentEditController = TextEditingController();
   String _emotionResponse = ""; // API 응답을 저장할 변수
   List _emotionResponseList = [
