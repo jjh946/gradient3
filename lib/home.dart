@@ -1,10 +1,23 @@
-import 'package:flutter/material.dart';
 import 'package:gradient3/input_text.dart';
-
+import 'package:permission_handler/permission_handler.dart';
 import 'colorpicker.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:flutter_gradients_reborn/flutter_gradients_reborn.dart';
 import 'circular_menu.dart';
+import 'dart:math';
+import 'dart:typed_data';
+
+import 'package:screenshot/screenshot.dart';
+import 'dart:async';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:flutter/material.dart';
+import 'package:screenshot/screenshot.dart';
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MaterialApp(home: homeApp()));
@@ -21,6 +34,51 @@ class _homeAppState extends State<homeApp> {
 
   String _currentMonth = DateFormat.yMMM().format(DateTime(2023, 12, 14));
   DateTime _targetDateTime = DateTime(2023, 12, 14);
+
+  // Create an instance of ScreenshotController
+  ScreenshotController screenshotController = ScreenshotController();
+
+  Future<void> requestPermissions() async {
+    // 알림 권한 확인 및 요청
+    var notificationStatus = await Permission.notification.status;
+    if (!notificationStatus.isGranted) {
+      await Permission.notification.request();
+    }
+
+    //https://pub.dev/documentation/permission_handler/11.1.0/permission_handler/Permission/storage-constant.html
+
+    //저장소요청
+    var status = await Permission.manageExternalStorage.status;
+    if (!status.isGranted) {
+      await Permission.storage.request();
+    }
+
+    // 사진 ,카메라 권한
+    var cameraStatus = await Permission.camera.status;
+    var photosStatus = await Permission.photos.status;
+
+    if (!cameraStatus.isGranted) {
+      await Permission.camera.request();
+    }
+
+    if (!photosStatus.isGranted) {
+      await Permission.photos.request();
+    }
+  }
+
+  Future<void> socialShare(capturedImage) async {
+    requestPermissions();
+    final directory = await getApplicationDocumentsDirectory();
+    final imagePath = await File('${directory.path}/image.png').create();
+    final path = '${directory.path}/image.png';
+    await imagePath.writeAsBytes(capturedImage);
+    await Share.shareFiles([path], text: 'Image Shared');
+  }
+
+  _saved(image) async {
+    final result = await ImageGallerySaver.saveImage(image);
+    print("File Saved to Gallery");
+  }
 
   List gradientList = [
     FlutterGradients.magicLake(),
@@ -59,7 +117,9 @@ class _homeAppState extends State<homeApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Screenshot(
+      controller: screenshotController,
+      child: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -109,13 +169,14 @@ class _homeAppState extends State<homeApp> {
             appBar: AppBar(
               centerTitle: true,
               leading: IconButton(
-                  onPressed: () {
-                    print('static hahaha');
-                  },
                   icon: const Icon(
                     Icons.bar_chart,
                     color: Color(0xff606060),
-                  )),
+                  ),
+                onPressed: () {
+                  _navigateAndDisplaySelection2(context);
+                  // addGradient(FlutterGradients.seaStrike());
+                }),
               backgroundColor: Colors.transparent,
               elevation: 0.0,
               title: Text('Flutter Circular Menu'),
@@ -134,8 +195,13 @@ class _homeAppState extends State<homeApp> {
                       color: Color(0xff606060),
                     ),
                     onPressed: () {
-                      _navigateAndDisplaySelection2(context);
-                      // addGradient(FlutterGradients.seaStrike());
+                      screenshotController
+                          .capture(delay: Duration(milliseconds: 10))
+                          .then((capturedImage) async {
+                        socialShare(capturedImage!);
+                      }).catchError((onError) {
+                        print(onError);
+                      });
                     }),
                 IconButton(
                     icon: Icon(
@@ -163,6 +229,7 @@ class _homeAppState extends State<homeApp> {
             )
 
         )
+    )
     );
   }
 
@@ -322,5 +389,7 @@ class SelectionScreen extends StatelessWidget {
         ),
       ),
     );
+
   }
+
 }
