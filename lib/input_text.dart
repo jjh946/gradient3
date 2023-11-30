@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'apikey.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gradients_reborn/flutter_gradients_reborn.dart';
@@ -7,6 +8,8 @@ import 'package:http/http.dart' as http;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 final firestore = FirebaseFirestore.instance;
+
+ 
 
 
 void main() {
@@ -27,16 +30,18 @@ class _textAppState extends State<textApp> {
 
   final _contentEditController = TextEditingController();
   String _emotionResponse = ""; // API 응답을 저장할 변수
-  List _emotionResponseList = [
-    // Color(0xffE8F8C8),
-    // Color(0xffECACB8),
+  List<String> _emotionResponseList = [
+   
+  ];
+  List<Color> feelings = [
+    //Color.fromARGB(255, 68, 123, 224),
   ];
 
   final Gradient _gradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [
-      // Color(0xffE8F8C8),
+      
       // Color(0xffECACB8),
     ],
   );
@@ -48,11 +53,7 @@ class _textAppState extends State<textApp> {
     '아쉬움': Color(0xff9ED6C0),
     '기대' : Color(0xfd84ffff)
   };
-  List feelings = [
-    FlutterGradients.magicLake(),
-    FlutterGradients.flyingLemon(),
-
-  ];
+  
   var now = DateTime.now();
   var year = DateFormat('yyy').format(DateTime.now());
   var month = DateFormat('MMM').format(DateTime.now());
@@ -117,7 +118,7 @@ class _textAppState extends State<textApp> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          for (int i = 0; i < _emotionResponseList.length; i++)
+                          for (int i = 0; i < feelings.length; i++)
                             Container(
                               width: 50,
                               height: 50,
@@ -128,8 +129,8 @@ class _textAppState extends State<textApp> {
                                   begin: Alignment.topRight,
                                   end: Alignment.bottomLeft,
                                   colors: [
-                                    _emotionResponseList[i],
-                                    _emotionResponseList[i],
+                                    feelings[i],
+                                    feelings[i],
                                   ],
                                 ),
                                 boxShadow: [
@@ -165,7 +166,7 @@ class _textAppState extends State<textApp> {
                       ),
                     ),
                     TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           
 
                           printColorPalette();
@@ -173,21 +174,36 @@ class _textAppState extends State<textApp> {
                           var userInput = _contentEditController.text; // 텍스트 필드에서 텍스트 가져오기
                           String prompt = 'Q: ' + userInput + '\nA: '; // 사용자 입력을 포함한 프롬프트 생성
 
-                          extractEmotion(prompt).then((value) {
+                          try {
+                            var value = await extractEmotion(prompt);
+                            _emotionResponse = value; // 상태 갱신
+                            // _emotionResponseList = value.split(',')
+                            // .map((e) => e.trim())
+                            // .map((e) => "'$e'")
+                            // .toList();
+                            _emotionResponseList = value.split(',').map((e) => e.trim()).toList(); 
+
+                            await addColorsToList(feelings);
+                            await addColorsToList(_gradient.colors);
+                            
                             setState(() {
-                              _emotionResponse = value; // 상태 갱신
-                              //_emotionResponseList = value.split(',').map((e) => e.trim()).toList();
-
-
+                              // 여기서 상태 업데이트
+                              // 필요한 모든 상태 변경을 여기서 수행
+                              
                             });
-                          }).catchError((error) {
-                            // 오류 처리, 필요에 따라 사용자에게 알림을 줄 수 있음
-                            print('Error getting emotion: $error');
-                          });
+
+                            print(feelings);
+                          } catch (e) {
+                            print(e);
+                          }
+                          
+                          
                         },
                         child: Text('구슬 생성하기', style: TextStyle(color: Colors.deepPurple))
                     ),
                     Text(_emotionResponse, // 화면에 API 응답 출력
+                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                    Text(_emotionResponseList.toString(), // 화면에 API 응답 출력
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                   ]
               ),
@@ -220,6 +236,31 @@ class _textAppState extends State<textApp> {
     print(extractedEmotions);
 
   }
+
+  Future<void> addColorsToList(List<Color> feelings) async {
+    print('------------------');
+  CollectionReference emotionsCollection = FirebaseFirestore.instance.collection('user/jAwpP79Mg55elKzKXhqY/color_palette');
+
+  QuerySnapshot snapshot = await emotionsCollection.get();
+  for (var doc in snapshot.docs) {
+    
+    //print(doc.data());
+
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+
+    print('Firestore emotion: ${data['emotion']}, _emotionResponseList: $_emotionResponseList'); // 디버그 출력
+    if (_emotionResponseList.contains(data['emotion'])) {
+      print('data[\'color\']: ${data['color']}'); // 디버그 출력
+
+      String colorString = data['color'];
+      // "0x" 접두사 제거 후 16진수 색상 코드를 int로 변환
+      int colorValue = int.parse(colorString.substring(2), radix: 16);
+      feelings.add(Color(colorValue));
+
+      print('Color added: ${Color(colorValue)}'); // 디버그 출력
+    }
+  }
+}
 
 
   Widget date() {
@@ -282,7 +323,7 @@ class _textAppState extends State<textApp> {
 }
 
 
-const apiKey = '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';
+// const apiKey = '';
 const apiUrl = 'https://api.openai.com/v1/chat/completions';
 const prompt_prefix = '''
 [뿌듯, 슬픔, 기쁨, 피곤, 아쉬움, 기대], 이 감정들이 너가 찾아야 할 감정이야.
