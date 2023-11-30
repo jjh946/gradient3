@@ -5,34 +5,39 @@ import 'package:flutter_gradients_reborn/flutter_gradients_reborn.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+final firestore = FirebaseFirestore.instance;
+
 
 void main() {
+  // var result = await firestore.collection('user').doc('jAwpP79Mg55elKzKXhqY').get();
+  // print(result);
   runApp(MaterialApp(home: textApp())
   );
 }
 
-class textApp extends StatefulWidget {
+class textApp extends StatefulWidget  {
   const textApp({super.key});
-
+  
   @override
   State<textApp> createState() => _textAppState();
 }
 
 class _textAppState extends State<textApp> {
+
   final _contentEditController = TextEditingController();
   String _emotionResponse = ""; // API 응답을 저장할 변수
   List _emotionResponseList = [
-    Color(0xffE8F8C8),
-    Color(0xffECACB8),
+    // Color(0xffE8F8C8),
+    // Color(0xffECACB8),
   ];
-
 
   final Gradient _gradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [
-      Color(0xffE8F8C8),
-      Color(0xffECACB8),
+      // Color(0xffE8F8C8),
+      // Color(0xffECACB8),
     ],
   );
   var basefeelings = {
@@ -161,6 +166,10 @@ class _textAppState extends State<textApp> {
                     ),
                     TextButton(
                         onPressed: () {
+                          
+
+                          printColorPalette();
+                          
                           var userInput = _contentEditController.text; // 텍스트 필드에서 텍스트 가져오기
                           String prompt = 'Q: ' + userInput + '\nA: '; // 사용자 입력을 포함한 프롬프트 생성
 
@@ -186,6 +195,32 @@ class _textAppState extends State<textApp> {
         )
     );
   }
+
+  void printColorPalette() async {
+    CollectionReference colorPalette = FirebaseFirestore.instance.collection('user/jAwpP79Mg55elKzKXhqY/color_palette');
+    CollectionReference diary = FirebaseFirestore.instance.collection('user/jAwpP79Mg55elKzKXhqY/diary');
+
+    // 컬렉션의 문서들을 조회합니다.
+    QuerySnapshot querySnapshot = await colorPalette.get();
+    QuerySnapshot querySnapshot2 = await diary.get();
+
+    // 각 문서의 데이터를 프린트합니다.
+    for (var doc in querySnapshot.docs) {
+      print(doc.data());
+    }
+    for (var doc in querySnapshot2.docs) {
+      print(doc.data());
+    }
+    print('------------------');
+
+    var documentData = querySnapshot2.docs[0].data() as Map<String, dynamic>;
+    var emotions = documentData['emotion'] as Map<String, dynamic>;
+    var extractedEmotions = emotions['extractedEmotions'];
+
+    print(extractedEmotions);
+
+  }
+
 
   Widget date() {
     return Container(
@@ -247,7 +282,7 @@ class _textAppState extends State<textApp> {
 }
 
 
-const apiKey = '';
+const apiKey = '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';
 const apiUrl = 'https://api.openai.com/v1/chat/completions';
 const prompt_prefix = '''
 [뿌듯, 슬픔, 기쁨, 피곤, 아쉬움, 기대], 이 감정들이 너가 찾아야 할 감정이야.

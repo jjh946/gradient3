@@ -1,0 +1,18 @@
+/Users/junhyeong/Documents/GitHub/gradient3/macos/Pods/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/BoringSSL-GRPC/openssl_grpc.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/FirebaseAppCheckInterop/FirebaseAppCheckInterop.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/FirebaseAuth/FirebaseAuth.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/FirebaseCore/FirebaseCore.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/FirebaseCoreExtension/FirebaseCoreExtension.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/FirebaseCoreInternal/FirebaseCoreInternal.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/FirebaseFirestore/FirebaseFirestore.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/FirebaseFirestoreInternal/FirebaseFirestoreInternal.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/FirebaseSharedSwift/FirebaseSharedSwift.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/GTMSessionFetcher/GTMSessionFetcher.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/GoogleUtilities/GoogleUtilities.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/PromisesObjC/FBLPromises.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/abseil/absl.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/gRPC-C++/grpcpp.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/gRPC-Core/grpc.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/leveldb-library/leveldb.framework
+/Users/junhyeong/Documents/GitHub/gradient3/build/macos/Build/Products/Debug/nanopb/nanopb.framework

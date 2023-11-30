@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:gradient3/input_text.dart';
 
@@ -6,9 +7,7 @@ import 'package:intl/intl.dart' show DateFormat;
 import 'package:flutter_gradients_reborn/flutter_gradients_reborn.dart';
 import 'circular_menu.dart';
 
-void main() {
-  runApp(MaterialApp(home: homeApp()));
-}
+
 
 
 
