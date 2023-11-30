@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'apikey.dart';
+//import 'apikey.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gradients_reborn/flutter_gradients_reborn.dart';
@@ -345,7 +345,7 @@ A: 슬픔, 기대
 Future<String> extractEmotion(String prompt) async{
   final res = await http.post(
     Uri.parse(apiUrl),
-    headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $apiKey'},
+    //headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $apiKey'},
     body: jsonEncode({
       "model": "gpt-4",
       "messages": [

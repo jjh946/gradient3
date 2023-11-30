@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.teamI.gradient.app-mergeDebugResources-14:/values-en-rIN/values-en-rIN.xml",
+            "outputFile": "com.teamI.gradient.app-mergeDebugResources-15:/values-en-rIN/values-en-rIN.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\bbty2\\.gradle\\caches\\transforms-3\\6d3bbaf4594b8ed85e4722883be764b3\\transformed\\browser-1.4.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "source": "C:\\Users\\bbty2\\.gradle\\caches\\transforms-3\\8c83ceb8fe1e8bc920c821d45dfce047\\transformed\\browser-1.4.0\\res\\values-en-rIN\\values-en-rIN.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\bbty2\\.gradle\\caches\\transforms-3\\7e9df2ac2213a6bd3cef0f2f27870d79\\transformed\\core-1.6.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "source": "C:\\Users\\bbty2\\.gradle\\caches\\transforms-3\\03204e7a863cd68980f40b7d5a3e5e44\\transformed\\core-1.6.0\\res\\values-en-rIN\\values-en-rIN.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

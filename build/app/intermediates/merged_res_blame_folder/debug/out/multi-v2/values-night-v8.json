@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.teamI.gradient.app-mergeDebugResources-14:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.teamI.gradient.app-mergeDebugResources-15:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\bbty2\\AndroidStudioProjects\\gradient\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\bbty2\\AndroidStudioProjects\\gradient_login_2\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

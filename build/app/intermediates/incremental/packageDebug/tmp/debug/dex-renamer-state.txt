@@ -1,10 +1,10 @@
-#Fri Nov 10 00:42:01 KST 2023
-base.0=C\:\\Users\\bbty2\\AndroidStudioProjects\\gradient\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\bbty2\\AndroidStudioProjects\\gradient\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
-base.2=C\:\\Users\\bbty2\\AndroidStudioProjects\\gradient\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.3=C\:\\Users\\bbty2\\AndroidStudioProjects\\gradient\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
-base.4=C\:\\Users\\bbty2\\AndroidStudioProjects\\gradient\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
-base.5=C\:\\Users\\bbty2\\AndroidStudioProjects\\gradient\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+#Fri Dec 01 08:11:33 KST 2023
+base.0=C\:\\Users\\bbty2\\AndroidStudioProjects\\gradient_login_2\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\bbty2\\AndroidStudioProjects\\gradient_login_2\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\bbty2\\AndroidStudioProjects\\gradient_login_2\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.3=C\:\\Users\\bbty2\\AndroidStudioProjects\\gradient_login_2\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
+base.4=C\:\\Users\\bbty2\\AndroidStudioProjects\\gradient_login_2\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+base.5=C\:\\Users\\bbty2\\AndroidStudioProjects\\gradient_login_2\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=0/classes.dex

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.teamI.gradient.app-mergeDebugResources-14:/values-v16/values-v16.xml",
+            "outputFile": "com.teamI.gradient.app-mergeDebugResources-15:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\bbty2\\.gradle\\caches\\transforms-3\\7e9df2ac2213a6bd3cef0f2f27870d79\\transformed\\core-1.6.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\bbty2\\.gradle\\caches\\transforms-3\\03204e7a863cd68980f40b7d5a3e5e44\\transformed\\core-1.6.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
