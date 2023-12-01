@@ -20,6 +20,10 @@ lib/firebase_options.dart
 # See https://dart.dev/guides/libraries/private-files#pubspeclock
 #pubspec.lock
 
+# 민감한 파일 무시
+/build/intermediates/
+/values.xml
+
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
@@ -29,7 +33,7 @@ lib/firebase_options.dart
 **/android/key.properties
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
-google-service.json
+google-services.json
 
 # iOS/XCode related
 **/ios/**/*.mode1v3
