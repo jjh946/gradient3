@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/gradient3.iml" filepath="$PROJECT_DIR$/.idea/gradient3.iml" />
+<<<<<<< Updated upstream
+=======
+      <module fileurl="file://$PROJECT_DIR$/android/gradient3_android.iml" filepath="$PROJECT_DIR$/android/gradient3_android.iml" />
+>>>>>>> Stashed changes
     </modules>
   </component>
 </project>
