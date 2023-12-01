@@ -109,6 +109,7 @@ class _homeAppState extends State<homeApp> {
               centerTitle: true,
               leading: IconButton(
                   onPressed: () {
+                    _navigateAndDisplaySelection2(context);
                     print('static hahaha');
                   },
                   icon: const Icon(
@@ -133,7 +134,7 @@ class _homeAppState extends State<homeApp> {
                       color: Color(0xff606060),
                     ),
                     onPressed: () {
-                      _navigateAndDisplaySelection2(context);
+                      
                       // addGradient(FlutterGradients.seaStrike());
                     }),
                 IconButton(

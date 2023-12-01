@@ -86,7 +86,8 @@ class _textAppState extends State<textApp> {
               title: Text('Flutter Circular Menu'),
               actions: [TextButton(onPressed: (){
                 Navigator.pop(
-                    context
+                    context,
+                    _gradient
                 );
 
               },
