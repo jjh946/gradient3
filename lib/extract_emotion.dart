@@ -82,7 +82,7 @@ A: ''';
         {
           "createdTimestamp": Timestamp.fromDate(now),
           "modifiedTimestamp": Timestamp.fromDate(now),
-          "content": prompt.split('Q: ')[1].split('\nA:')[0];
+          "content": prompt.split('Q: ')[1].split('\nA:')[0],
           "emotion": {
             "extractor": "GPT4",
             "extractedEmotions": value.split(',').map((e) => e.trim()).toList()

@@ -6,7 +6,15 @@ import 'package:intl/intl.dart' show DateFormat;
 import 'package:flutter_gradients_reborn/flutter_gradients_reborn.dart';
 import 'circular_menu.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MaterialApp(home: homeApp()));
 }
 

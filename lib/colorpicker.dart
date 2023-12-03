@@ -1,7 +1,12 @@
 import 'home.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
+
+final firestore = FirebaseFirestore.instance;
 
 
 void main() => runApp(const ColorPickerDemo());
@@ -194,6 +199,25 @@ class _ColorPickerPageState extends State<ColorPickerPage> {
                   // the color we started with. The extra update for that
                   // below does not really matter, but if you want you can
                   // check if they are equal and skip the update below.
+                  String newColorString = newColor.toString();
+                  newColorString = newColorString.substring(10,16);
+                  newColorString = "0xff" + newColorString;    
+                  try{
+                    CollectionReference colorPaletteCollection = firestore.collection('user').doc('jAwpP79Mg55elKzKXhqY').collection('color_palette');
+                    
+                    print("SNAPSHOT: start");
+                    QuerySnapshot querySnapshot = await colorPaletteCollection.where('emotion', isEqualTo: '뿌듯').get();
+                    // print full snapshot
+                    print("SNAPSHOT: ${querySnapshot.docs}");
+                    for (QueryDocumentSnapshot document in querySnapshot.docs) {
+                          String documentId = document.id;
+                          print("documentId: " + documentId);
+                          await colorPaletteCollection.doc(documentId).update({
+                            'color': newColorString
+                          });
+                    };} catch (e) {
+                      print("error: " + e.toString());
+                    }
                   setState(() {
                     dialogSelectColor = newColor;
                   });
