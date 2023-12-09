@@ -92,9 +92,19 @@
 		<data>
 		C7k2DFJRl4sOYxgFqiOpnGh1Xho=
 		</data>
+<<<<<<< HEAD
 		<key>Headers/GoogleUtilities-umbrella.h</key>
 		<data>
 		HngxoKMV2A2frpPdNBGjW8VKjEg=
+=======
+		<key>Headers/GULUserDefaults.h</key>
+		<data>
+		EBGg0ZapNUzyIzb6nCliBREczUA=
+		</data>
+		<key>Headers/GoogleUtilities-umbrella.h</key>
+		<data>
+		rZ94/icTbEMH2EKHayvvXzq7WRE=
+>>>>>>> gyuwon-main
 		</data>
 		<key>Headers/NSURLSession+GULPromises.h</key>
 		<data>
@@ -265,11 +275,25 @@
 			n5k4qaKh2bYI2mwBIAa845pVXUSRxdfJfPyeZ/AIEyA=
 			</data>
 		</dict>
+<<<<<<< HEAD
+=======
+		<key>Headers/GULUserDefaults.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ys09g5WqzZ5D/IaWg2v2AyTadtZDy7y+bS/G95iNTnE=
+			</data>
+		</dict>
+>>>>>>> gyuwon-main
 		<key>Headers/GoogleUtilities-umbrella.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
+<<<<<<< HEAD
 			TY/yKChBz50po6mNv+kGlFf/ImfXrJfy4kcW2TVxOSE=
+=======
+			OlD/sUl0fs4jg1dQbTXGWaoQ3eb1tzCKFDxOm//FIjI=
+>>>>>>> gyuwon-main
 			</data>
 		</dict>
 		<key>Headers/NSURLSession+GULPromises.h</key>

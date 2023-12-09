@@ -325,6 +325,7 @@ class _textAppState extends State<textApp> {
 
 
 // const apiKey = '';
+const apikey = apiKey;
 const apiUrl = 'https://api.openai.com/v1/chat/completions';
 const prompt_prefix = '''
 [뿌듯, 슬픔, 기쁨, 피곤, 아쉬움, 기대], 이 감정들이 너가 찾아야 할 감정이야.
@@ -346,7 +347,7 @@ A: 슬픔, 기대
 Future<String> extractEmotion(String prompt) async{
   final res = await http.post(
     Uri.parse(apiUrl),
-    headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $apiKey'},
+    headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $apikey'},
     body: jsonEncode({
       "model": "gpt-4",
       "messages": [
