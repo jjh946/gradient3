@@ -1,9 +1,11 @@
+
 import 'package:gradient3/input_text.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'colorpicker.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:flutter_gradients_reborn/flutter_gradients_reborn.dart';
 import 'circular_menu.dart';
+
 import 'dart:math';
 import 'dart:typed_data';
 
@@ -19,9 +21,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:http/http.dart' as http;
 
-void main() {
-  runApp(MaterialApp(home: homeApp()));
-}
+
+
 
 
 
@@ -34,6 +35,8 @@ class _homeAppState extends State<homeApp> {
 
   String _currentMonth = DateFormat.yMMM().format(DateTime(2023, 12, 14));
   DateTime _targetDateTime = DateTime(2023, 12, 14);
+  
+
 
   // Create an instance of ScreenshotController
   ScreenshotController screenshotController = ScreenshotController();
@@ -169,14 +172,15 @@ class _homeAppState extends State<homeApp> {
             appBar: AppBar(
               centerTitle: true,
               leading: IconButton(
+                  onPressed: () {
+                    _navigateAndDisplaySelection2(context);
+                    print('static hahaha');
+                  },
                   icon: const Icon(
                     Icons.bar_chart,
                     color: Color(0xff606060),
                   ),
-                onPressed: () {
-                  _navigateAndDisplaySelection2(context);
-                  // addGradient(FlutterGradients.seaStrike());
-                }),
+                ),
               backgroundColor: Colors.transparent,
               elevation: 0.0,
               title: Text('Flutter Circular Menu'),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:circular_menu/circular_menu.dart';
-import 'home.dart';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+final firestore = FirebaseFirestore.instance;
+
 
 void main() {
   runApp(MaterialApp(home: addApp())
@@ -15,10 +18,16 @@ class addApp extends StatefulWidget {
 class _addAppState extends State<addApp> {
   String _colorName = 'No';
   Color _color = Colors.black;
+
+  CollectionReference colorPalette = FirebaseFirestore.instance.collection('user/jAwpP79Mg55elKzKXhqY/color_palette');
+  CollectionReference diary = FirebaseFirestore.instance.collection('user/jAwpP79Mg55elKzKXhqY/diary');
+   
+  
   Gradient _gradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [
+
 
     ],
   );
