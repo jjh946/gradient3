@@ -1,1 +1,5 @@
 apikey.dart
+.dart_tool/
+build/
+ios/Podfile.lock
+.flutter-plugins-dependencies
