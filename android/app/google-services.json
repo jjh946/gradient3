@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "950200397496",
+    "project_id": "capstone-403203",
+    "storage_bucket": "capstone-403203.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950200397496:android:24e004e0f50b0cbda20e4d",
+        "android_client_info": {
+          "package_name": "com.example.gradient3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950200397496-3npmdf4u3ds3mmudpdms8r9reufpg7qg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCehnjAE6feqnJi8uuAZb6Sl5wuOjakAPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950200397496-3npmdf4u3ds3mmudpdms8r9reufpg7qg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "950200397496-su9lvmd6j0usdq8g8jgbsum77krm1e67.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gradient3"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950200397496:android:5ade1074d0687d4ca20e4d",
+        "android_client_info": {
+          "package_name": "com.teamI.gradient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950200397496-fmlkdt3trse7tr418v0a9advt3fsag2o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.teamI.gradient",
+            "certificate_hash": "78826db52c3913ebc6addc78cb02d2265544212d"
+          }
+        },
+        {
+          "client_id": "950200397496-3npmdf4u3ds3mmudpdms8r9reufpg7qg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCehnjAE6feqnJi8uuAZb6Sl5wuOjakAPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950200397496-3npmdf4u3ds3mmudpdms8r9reufpg7qg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "950200397496-su9lvmd6j0usdq8g8jgbsum77krm1e67.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gradient3"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
