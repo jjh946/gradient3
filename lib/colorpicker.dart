@@ -75,6 +75,11 @@ class _ColorPickerPageState extends State<ColorPickerPage> {
   late Color tiredColor;
   late Color extpectedColor;
   late Color shameColor;
+  late Color gratefulColor;
+  late Color trustColor;
+  late Color surpriseColor;
+  late Color angryColor;
+
   // Define some custom colors for the custom picker segment.
   // The 'guide' color values are from
   // https://material.io/design/color/the-color-system.html#color-theme-creation
@@ -106,6 +111,10 @@ class _ColorPickerPageState extends State<ColorPickerPage> {
     tiredColor = const Color(0xFFCBD2FD);
     extpectedColor = const Color(0xfd84ffff);
     shameColor = const Color(0xff9ED6C0);
+    gratefulColor = const Color(0xFFFFFF00);
+    trustColor = const Color(0xFF088A08);
+    surpriseColor = const Color(0xFFFF00FF);
+    angryColor = const Color(0xFFB40404);
     isDark = false;
     super.initState();
   }
@@ -583,7 +592,7 @@ class _ColorPickerPageState extends State<ColorPickerPage> {
         
           //shameColor
           ListTile(
-            title: const Text('피곤'),
+            title: const Text('아쉬움'),
             subtitle: Text(
               // ignore: lines_longer_than_80_chars
               '${ColorTools.materialNameAndCode(shameColor, colorSwatchNameMap: colorsNameMap)} '
@@ -673,6 +682,390 @@ class _ColorPickerPageState extends State<ColorPickerPage> {
 
                   setState(() {
                     shameColor = newColor;
+                  });
+                }),
+          ),
+
+          //gratefulColor
+          ListTile(
+            title: const Text('감사'),
+            subtitle: Text(
+              // ignore: lines_longer_than_80_chars
+              '${ColorTools.materialNameAndCode(gratefulColor, colorSwatchNameMap: colorsNameMap)} '
+                  'aka ${ColorTools.nameThatColor(gratefulColor)}',
+            ),
+            trailing: ColorIndicator(
+                width: 44,
+                height: 44,
+                borderRadius: 22,
+                color: gratefulColor,
+                elevation: 1,
+                onSelectFocus: false,
+                onSelect: () async {
+                  // Wait for the dialog to return color selection result.
+                  final Color newColor = await showColorPickerDialog(
+                    // The dialog needs a context, we pass it in.
+                    context,
+                    // We use the dialogSelectColor, as its starting color.
+                    gratefulColor,
+                    title: Text('ColorPicker',
+                        style: Theme.of(context).textTheme.titleLarge),
+                    width: 40,
+                    height: 40,
+
+                    borderRadius: 4,
+                    wheelDiameter: 165,
+                    enableOpacity: true,
+                    showColorCode: true,
+                    colorCodeHasColor: false,
+                    pickersEnabled: <ColorPickerType, bool>{
+                      ColorPickerType.wheel: true,
+                    },
+                    copyPasteBehavior: const ColorPickerCopyPasteBehavior(
+                      copyButton: false,
+                      pasteButton: false,
+                      longPressMenu: true,
+                    ),
+                    actionButtons: const ColorPickerActionButtons(
+                      okButton: true,
+                      closeButton: true,
+                      dialogActionButtons: false,
+                    ),
+                    transitionBuilder: (BuildContext context,
+                        Animation<double> a1,
+                        Animation<double> a2,
+                        Widget widget) {
+                      final double curvedValue =
+                          Curves.easeInOutBack.transform(a1.value) - 1.0;
+                      return Transform(
+                        transform: Matrix4.translationValues(
+                            0.0, curvedValue * 200, 0.0),
+                        child: Opacity(
+                          opacity: a1.value,
+                          child: widget,
+                        ),
+                      );
+                    },
+                    transitionDuration: const Duration(milliseconds: 400),
+                    constraints: const BoxConstraints(
+                        minHeight: 480, minWidth: 320, maxWidth: 320),
+                  );
+                  // We update the dialogSelectColor, to the returned result
+                  // color. If the dialog was dismissed it actually returns
+                  // the color we started with. The extra update for that
+                  // below does not really matter, but if you want you can
+                  // check if they are equal and skip the update below.
+                  String newColorString = newColor.toString();
+                  newColorString = newColorString.substring(10,16);
+                  newColorString = "0xff" + newColorString;    
+                  try{
+                    CollectionReference colorPaletteCollection = firestore.collection('user').doc('jAwpP79Mg55elKzKXhqY').collection('color_palette');
+
+                    print("SNAPSHOT: start");
+                    QuerySnapshot querySnapshot = await colorPaletteCollection.where('emotion', isEqualTo: '감사').get();
+                    // print full snapshot
+                    print("SNAPSHOT: ${querySnapshot.docs}");
+                    for (QueryDocumentSnapshot document in querySnapshot.docs) {
+                          String documentId = document.id;
+                          print("documentId: " + documentId);
+                          await colorPaletteCollection.doc(documentId).update({
+                            'color': newColorString
+                          });
+                    };} catch (e) {
+                      print("error: " + e.toString());
+                    }
+
+
+                  setState(() {
+                    gratefulColor = newColor;
+                  });
+                }),
+          ),
+
+          //trustColor
+          ListTile(
+            title: const Text('신뢰'),
+            subtitle: Text(
+              // ignore: lines_longer_than_80_chars
+              '${ColorTools.materialNameAndCode(trustColor, colorSwatchNameMap: colorsNameMap)} '
+                  'aka ${ColorTools.nameThatColor(trustColor)}',
+            ),
+            trailing: ColorIndicator(
+                width: 44,
+                height: 44,
+                borderRadius: 22,
+                color: trustColor,
+                elevation: 1,
+                onSelectFocus: false,
+                onSelect: () async {
+                  // Wait for the dialog to return color selection result.
+                  final Color newColor = await showColorPickerDialog(
+                    // The dialog needs a context, we pass it in.
+                    context,
+                    // We use the dialogSelectColor, as its starting color.
+                    trustColor,
+                    title: Text('ColorPicker',
+                        style: Theme.of(context).textTheme.titleLarge),
+                    width: 40,
+                    height: 40,
+
+                    borderRadius: 4,
+                    wheelDiameter: 165,
+                    enableOpacity: true,
+                    showColorCode: true,
+                    colorCodeHasColor: false,
+                    pickersEnabled: <ColorPickerType, bool>{
+                      ColorPickerType.wheel: true,
+                    },
+                    copyPasteBehavior: const ColorPickerCopyPasteBehavior(
+                      copyButton: false,
+                      pasteButton: false,
+                      longPressMenu: true,
+                    ),
+                    actionButtons: const ColorPickerActionButtons(
+                      okButton: true,
+                      closeButton: true,
+                      dialogActionButtons: false,
+                    ),
+                    transitionBuilder: (BuildContext context,
+                        Animation<double> a1,
+                        Animation<double> a2,
+                        Widget widget) {
+                      final double curvedValue =
+                          Curves.easeInOutBack.transform(a1.value) - 1.0;
+                      return Transform(
+                        transform: Matrix4.translationValues(
+                            0.0, curvedValue * 200, 0.0),
+                        child: Opacity(
+                          opacity: a1.value,
+                          child: widget,
+                        ),
+                      );
+                    },
+                    transitionDuration: const Duration(milliseconds: 400),
+                    constraints: const BoxConstraints(
+                        minHeight: 480, minWidth: 320, maxWidth: 320),
+                  );
+                  // We update the dialogSelectColor, to the returned result
+                  // color. If the dialog was dismissed it actually returns
+                  // the color we started with. The extra update for that
+                  // below does not really matter, but if you want you can
+                  // check if they are equal and skip the update below.
+                  String newColorString = newColor.toString();
+                  newColorString = newColorString.substring(10,16);
+                  newColorString = "0xff" + newColorString;    
+                  try{
+                    CollectionReference colorPaletteCollection = firestore.collection('user').doc('jAwpP79Mg55elKzKXhqY').collection('color_palette');
+
+                    print("SNAPSHOT: start");
+                    QuerySnapshot querySnapshot = await colorPaletteCollection.where('emotion', isEqualTo: '신뢰').get();
+                    // print full snapshot
+                    print("SNAPSHOT: ${querySnapshot.docs}");
+                    for (QueryDocumentSnapshot document in querySnapshot.docs) {
+                          String documentId = document.id;
+                          print("documentId: " + documentId);
+                          await colorPaletteCollection.doc(documentId).update({
+                            'color': newColorString
+                          });
+                    };} catch (e) {
+                      print("error: " + e.toString());
+                    }
+
+
+                  setState(() {
+                    trustColor = newColor;
+                  });
+                }),
+          ),
+
+          //surpriseColor
+          ListTile(
+            title: const Text('놀람'),
+            subtitle: Text(
+              // ignore: lines_longer_than_80_chars
+              '${ColorTools.materialNameAndCode(surpriseColor, colorSwatchNameMap: colorsNameMap)} '
+                  'aka ${ColorTools.nameThatColor(surpriseColor)}',
+            ),
+            trailing: ColorIndicator(
+                width: 44,
+                height: 44,
+                borderRadius: 22,
+                color: surpriseColor,
+                elevation: 1,
+                onSelectFocus: false,
+                onSelect: () async {
+                  // Wait for the dialog to return color selection result.
+                  final Color newColor = await showColorPickerDialog(
+                    // The dialog needs a context, we pass it in.
+                    context,
+                    // We use the dialogSelectColor, as its starting color.
+                    surpriseColor,
+                    title: Text('ColorPicker',
+                        style: Theme.of(context).textTheme.titleLarge),
+                    width: 40,
+                    height: 40,
+
+                    borderRadius: 4,
+                    wheelDiameter: 165,
+                    enableOpacity: true,
+                    showColorCode: true,
+                    colorCodeHasColor: false,
+                    pickersEnabled: <ColorPickerType, bool>{
+                      ColorPickerType.wheel: true,
+                    },
+                    copyPasteBehavior: const ColorPickerCopyPasteBehavior(
+                      copyButton: false,
+                      pasteButton: false,
+                      longPressMenu: true,
+                    ),
+                    actionButtons: const ColorPickerActionButtons(
+                      okButton: true,
+                      closeButton: true,
+                      dialogActionButtons: false,
+                    ),
+                    transitionBuilder: (BuildContext context,
+                        Animation<double> a1,
+                        Animation<double> a2,
+                        Widget widget) {
+                      final double curvedValue =
+                          Curves.easeInOutBack.transform(a1.value) - 1.0;
+                      return Transform(
+                        transform: Matrix4.translationValues(
+                            0.0, curvedValue * 200, 0.0),
+                        child: Opacity(
+                          opacity: a1.value,
+                          child: widget,
+                        ),
+                      );
+                    },
+                    transitionDuration: const Duration(milliseconds: 400),
+                    constraints: const BoxConstraints(
+                        minHeight: 480, minWidth: 320, maxWidth: 320),
+                  );
+                  // We update the dialogSelectColor, to the returned result
+                  // color. If the dialog was dismissed it actually returns
+                  // the color we started with. The extra update for that
+                  // below does not really matter, but if you want you can
+                  // check if they are equal and skip the update below.
+                  String newColorString = newColor.toString();
+                  newColorString = newColorString.substring(10,16);
+                  newColorString = "0xff" + newColorString;    
+                  try{
+                    CollectionReference colorPaletteCollection = firestore.collection('user').doc('jAwpP79Mg55elKzKXhqY').collection('color_palette');
+
+                    print("SNAPSHOT: start");
+                    QuerySnapshot querySnapshot = await colorPaletteCollection.where('emotion', isEqualTo: '놀람').get();
+                    // print full snapshot
+                    print("SNAPSHOT: ${querySnapshot.docs}");
+                    for (QueryDocumentSnapshot document in querySnapshot.docs) {
+                          String documentId = document.id;
+                          print("documentId: " + documentId);
+                          await colorPaletteCollection.doc(documentId).update({
+                            'color': newColorString
+                          });
+                    };} catch (e) {
+                      print("error: " + e.toString());
+                    }
+
+
+                  setState(() {
+                    surpriseColor = newColor;
+                  });
+                }),
+          ),
+
+          //angryColor
+          ListTile(
+            title: const Text('분노'),
+            subtitle: Text(
+              // ignore: lines_longer_than_80_chars
+              '${ColorTools.materialNameAndCode(angryColor, colorSwatchNameMap: colorsNameMap)} '
+                  'aka ${ColorTools.nameThatColor(angryColor)}',
+            ),
+            trailing: ColorIndicator(
+                width: 44,
+                height: 44,
+                borderRadius: 22,
+                color: angryColor,
+                elevation: 1,
+                onSelectFocus: false,
+                onSelect: () async {
+                  // Wait for the dialog to return color selection result.
+                  final Color newColor = await showColorPickerDialog(
+                    // The dialog needs a context, we pass it in.
+                    context,
+                    // We use the dialogSelectColor, as its starting color.
+                    angryColor,
+                    title: Text('ColorPicker',
+                        style: Theme.of(context).textTheme.titleLarge),
+                    width: 40,
+                    height: 40,
+
+                    borderRadius: 4,
+                    wheelDiameter: 165,
+                    enableOpacity: true,
+                    showColorCode: true,
+                    colorCodeHasColor: false,
+                    pickersEnabled: <ColorPickerType, bool>{
+                      ColorPickerType.wheel: true,
+                    },
+                    copyPasteBehavior: const ColorPickerCopyPasteBehavior(
+                      copyButton: false,
+                      pasteButton: false,
+                      longPressMenu: true,
+                    ),
+                    actionButtons: const ColorPickerActionButtons(
+                      okButton: true,
+                      closeButton: true,
+                      dialogActionButtons: false,
+                    ),
+                    transitionBuilder: (BuildContext context,
+                        Animation<double> a1,
+                        Animation<double> a2,
+                        Widget widget) {
+                      final double curvedValue =
+                          Curves.easeInOutBack.transform(a1.value) - 1.0;
+                      return Transform(
+                        transform: Matrix4.translationValues(
+                            0.0, curvedValue * 200, 0.0),
+                        child: Opacity(
+                          opacity: a1.value,
+                          child: widget,
+                        ),
+                      );
+                    },
+                    transitionDuration: const Duration(milliseconds: 400),
+                    constraints: const BoxConstraints(
+                        minHeight: 480, minWidth: 320, maxWidth: 320),
+                  );
+                  // We update the dialogSelectColor, to the returned result
+                  // color. If the dialog was dismissed it actually returns
+                  // the color we started with. The extra update for that
+                  // below does not really matter, but if you want you can
+                  // check if they are equal and skip the update below.
+                  String newColorString = newColor.toString();
+                  newColorString = newColorString.substring(10,16);
+                  newColorString = "0xff" + newColorString;    
+                  try{
+                    CollectionReference colorPaletteCollection = firestore.collection('user').doc('jAwpP79Mg55elKzKXhqY').collection('color_palette');
+
+                    print("SNAPSHOT: start");
+                    QuerySnapshot querySnapshot = await colorPaletteCollection.where('emotion', isEqualTo: '분노').get();
+                    // print full snapshot
+                    print("SNAPSHOT: ${querySnapshot.docs}");
+                    for (QueryDocumentSnapshot document in querySnapshot.docs) {
+                          String documentId = document.id;
+                          print("documentId: " + documentId);
+                          await colorPaletteCollection.doc(documentId).update({
+                            'color': newColorString
+                          });
+                    };} catch (e) {
+                      print("error: " + e.toString());
+                    }
+
+
+                  setState(() {
+                    angryColor = newColor;
                   });
                 }),
           ),
