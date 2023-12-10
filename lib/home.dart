@@ -142,7 +142,7 @@ class _homeAppState extends State<homeApp> {
                 builder: (context) {
                   return FloatingActionButton(
                     onPressed: (){
-                      _navigateAndDisplaySelection(context);
+                      _navigateAndDisplaySelection2(context);
                     },
                     elevation: 0,
                     child: Container(
@@ -173,7 +173,7 @@ class _homeAppState extends State<homeApp> {
               centerTitle: true,
               leading: IconButton(
                   onPressed: () {
-                    _navigateAndDisplaySelection2(context);
+                    _navigateAndDisplaySelection(context);
                     print('static hahaha');
                   },
                   icon: const Icon(

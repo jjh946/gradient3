@@ -204,8 +204,19 @@ class _textAppState extends State<textApp> {
                     ),
                     Text(_emotionResponse, // 화면에 API 응답 출력
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                    Text(_emotionResponseList.toString(), // 화면에 API 응답 출력
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextButton(
+                        onPressed: () {
+                          // '수정하기' 버튼이 눌렸을 때 실행할 로직
+                          // 예: Firestore 데이터 수정, 상태 업데이트 등
+                        },
+                        child: Text('수정하기', style: TextStyle(color: Colors.blue))
+                      ),
+                    ),
+
+                    // Text(_emotionResponseList.toString(), // 화면에 API 응답 출력
+                    //     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                   ]
               ),
             )
